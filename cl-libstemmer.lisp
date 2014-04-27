@@ -144,14 +144,16 @@
 ;;; */
 
 (defun stem-word/no-lock (stemmer word)
-  (check-type word word)
-  (let ((encoding (encoding-of stemmer)))
-    (cffi:with-foreign-string (fw word :encoding encoding)
-      ;; TODO Octets by encoding.
-      (let ((ptr (sb_stemmer_stem (%stemmer-pointer (%stemmer stemmer))
-                                  fw
-                                  (cffi::foreign-string-length fw :encoding encoding))))
-        (cffi:foreign-string-to-lisp ptr :encoding encoding)))))
+  (typecase word
+    (word
+     (let ((encoding (encoding-of stemmer)))
+       (cffi:with-foreign-string (fw word :encoding encoding)
+         ;; TODO Octets by encoding.
+         (let ((ptr (sb_stemmer_stem (%stemmer-pointer (%stemmer stemmer))
+                                     fw
+                                     (cffi::foreign-string-length fw :encoding encoding))))
+           (cffi:foreign-string-to-lisp ptr :encoding encoding)))))
+    (t word)))
 
 (defun stem (stemmer word)
   (check-open stemmer)

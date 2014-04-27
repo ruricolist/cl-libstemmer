@@ -11,7 +11,7 @@
 
 (defsystem #:cl-libstemmer
   :serial t
-  :description "FFI for libstemmer"
+  :description "Snowball stemming algorithms (FFI)"
   :author "Paul M. Rodriguez <pmr@ruricolist.com>"
   :license "MIT"
   :depends-on (#:alexandria

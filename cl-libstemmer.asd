@@ -18,7 +18,8 @@
                #:serapeum
                #:trivial-garbage
                #:cffi
-               #:bordeaux-threads)
+               #:bordeaux-threads
+               #:uiop)
   :components ((:file "package")
                (:file "libstemmer-ffi"
                       :around-compile wrap-package)

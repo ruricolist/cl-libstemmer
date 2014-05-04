@@ -26,4 +26,9 @@ There are also unbalanced `load-stemmer` and `close-stemmer`
 functions. Bear in mind that loading a stemmer is relatively
 expensive: for best results, stem in large batches.
 
+Besides libstemmer itself, CL-LIBSTEMMER also includes the lists of
+stop words compiled by the Snowball project.
+
+     (libstemmer:stop-word-p "is" :es) => T
+
 [snowball]: http://snowball.tartarus.org/index.php

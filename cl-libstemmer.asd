@@ -23,4 +23,5 @@
   :components ((:file "package")
                (:file "libstemmer-ffi"
                       :around-compile wrap-package)
+               (:file "stopwords")
                (:file "cl-libstemmer")))

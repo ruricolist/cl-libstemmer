@@ -146,6 +146,8 @@
 (defun stem-word/no-lock (stemmer word)
   (typecase word
     (word
+     (when (stop-word-p word (stemmer-language stemmer))
+       (return-from stem-word/no-lock word))
      (let ((encoding (encoding-of stemmer)))
        (cffi:with-foreign-string (fw word :encoding encoding)
          ;; TODO Octets by encoding.

@@ -9,5 +9,6 @@
            :load-stemmer :close-stemmer
            :no-such-stemmer
            :no-such-stemmer-language
-           :no-such-stemmer-encoding)
+           :no-such-stemmer-encoding
+           :stop-word-p)
   (:nicknames #:libstemmer))

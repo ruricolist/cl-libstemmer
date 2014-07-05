@@ -45,3 +45,8 @@
 (defun stop-word-p (word lang &key (table *stopwords*))
   (check-type word string)
   (values (gethash word (stop-words lang table))))
+
+(defun list-stop-words (lang)
+  (if-let (table (stop-words lang))
+    (hash-table-values table)
+    '()))

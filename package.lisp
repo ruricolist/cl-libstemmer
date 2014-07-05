@@ -10,5 +10,5 @@
            :no-such-stemmer
            :no-such-stemmer-language
            :no-such-stemmer-encoding
-           :stop-word-p)
+           :stop-word-p :list-stop-words)
   (:nicknames #:libstemmer))

@@ -16,10 +16,10 @@
     words))
 
 (defun snarf-stopwords (lang)
-  (let ((file (build-path (asdf:system-relative-pathname
-                           :cl-libstemmer
-                           "stopwords/")
-                          (make-pathname :name lang :type "txt"))))
+  (let* ((dir (asdf:system-relative-pathname
+               :cl-libstemmer
+               "stopwords/"))
+         (file (merge-pathnames (make-pathname :name lang :type "txt") dir)))
     (snarf-stopwords-file file)))
 
 (defun stopwords ()

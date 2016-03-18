@@ -67,7 +67,7 @@
    (encoding :initarg :encoding
              :accessor encoding-of
              :accessor stemmer-encoding)
-   (monitor :initform (bt:make-lock "Stemmer lock") :accessor monitor))
+   (monitor :initform (bt:make-lock "Stemmer lock") :reader monitor))
   (:documentation "Lisp wrapper for a C stemmer."))
 
 (defmethod closed? ((self stemmer))

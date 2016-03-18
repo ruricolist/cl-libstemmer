@@ -110,7 +110,7 @@
 
 (defun close-stemmer (stemmer)
   "Close STEMMER and free the C-side stemmer."
-  (bt:with-lock-held ((monitor stemmer))
+  (synchronized (stemmer)
     (%close-stemmer (%stemmer stemmer))))
 
 (defun load-stemmer (language &optional encoding)
@@ -159,14 +159,14 @@
 
 (defun stem (stemmer word)
   (check-open stemmer)
-  (bt:with-lock-held ((monitor stemmer))
+  (synchronized (stemmer)
     (stem-word/no-lock stemmer word)))
 
 (defun stem-all (list language &optional encoding)
   (handler-case
       (values
        (with-stemmer (s language encoding)
-         (bt:with-lock-held ((monitor s))
+         (synchronized (s)
            (loop for item in list
                  collect (stem-word/no-lock s item))))
        t)

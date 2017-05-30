@@ -27,9 +27,9 @@
     (error ()
       (format t "~&Building libstemmer.so...~%")
       (unless (zerop
-               (uiop/run-program:run-program
-                (fmt "cd ~a; make libstemmer.so"
-                     (uiop:native-namestring libstemmer-path))))
+               (uiop:run-program
+                '("make" "libstemmer.so")
+                :directory libstemmer-path))
         (error "Could not build libstemmer.so.")))))
 
 (use-libstemmer)

@@ -59,15 +59,14 @@
     (sb_stemmer_delete (%stemmer-pointer s))
     s))
 
-(defclass stemmer ()
+(defclass stemmer (synchronized)
   ((%stemmer :initarg :stemmer :type %stemmer :accessor %stemmer)
    (language :initarg :language
              :accessor language-of
              :accessor stemmer-language)
    (encoding :initarg :encoding
              :accessor encoding-of
-             :accessor stemmer-encoding)
-   (monitor :initform (bt:make-lock "Stemmer lock") :reader monitor))
+             :accessor stemmer-encoding))
   (:documentation "Lisp wrapper for a C stemmer."))
 
 (defmethod closed? ((self stemmer))
